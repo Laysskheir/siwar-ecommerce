@@ -17,8 +17,7 @@ from django.utils.safestring import mark_safe
 class Slider(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    # image = models.ImageField(upload_to='sliders/')
-    image = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='sliders/%Y/%m/%d/')
     
     def __str__(self):
         return self.title
@@ -26,7 +25,7 @@ class Slider(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    image = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='category/%Y/%m/%d/')
     slug = models.SlugField(max_length=50, unique=True)
 
     def save(self, *args, **kwargs):
@@ -46,13 +45,13 @@ class Brand(models.Model):
 
 class Product(models.Model):
 
-    RATING_CHOICES = (
-        ('★☆☆☆☆', '★☆☆☆☆'),
-        ('★★☆☆☆', '★★☆☆☆'),
-        ('★★★☆☆', '★★★☆☆'),
-        ('★★★★☆', '★★★★☆'),
-        ('★★★★★', '★★★★★'),
-    )
+    # RATING_CHOICES = (
+    #     ('★☆☆☆☆', '★☆☆☆☆'),
+    #     ('★★☆☆☆', '★★☆☆☆'),
+    #     ('★★★☆☆', '★★★☆☆'),
+    #     ('★★★★☆', '★★★★☆'),
+    #     ('★★★★★', '★★★★★'),
+    # )
 
     name = models.CharField(max_length=100)
     feature = models.BooleanField(default=False)
@@ -61,10 +60,10 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)  
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
-    # image = models.ImageField(upload_to='products/%Y/%m/%d/')
-    image = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='products/%Y/%m/%d/')
+    #image = models.CharField(max_length=500)
     discount = models.IntegerField(default=0)
-    rating = models.CharField(max_length=100, choices=RATING_CHOICES, default='★☆☆☆☆')
+    #rating = models.CharField(max_length=100, choices=RATING_CHOICES, default='★☆☆☆☆')
     created_at = models.DateTimeField(auto_now_add=True)
 
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
@@ -84,29 +83,30 @@ class Product(models.Model):
     
 class ProductImages(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='product_images/{0.name}/%Y/%m/%d/')
+
 
     def __str__(self):
         return self.product.name
     
 
-class Review(models.Model):
-    RATING_CHOICES = (
-        ('★☆☆☆☆', '★☆☆☆☆'),
-        ('★★☆☆☆', '★★☆☆☆'),
-        ('★★★☆☆', '★★★☆☆'),
-        ('★★★★☆', '★★★★☆'),
-        ('★★★★★', '★★★★★'),
-    )
+# class Review(models.Model):
+#     RATING_CHOICES = (
+#         ('★☆☆☆☆', '★☆☆☆☆'),
+#         ('★★☆☆☆', '★★☆☆☆'),
+#         ('★★★☆☆', '★★★☆☆'),
+#         ('★★★★☆', '★★★★☆'),
+#         ('★★★★★', '★★★★★'),
+#     )
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.CharField(max_length=100, choices=RATING_CHOICES, default='★☆☆☆☆')
-    comment = models.TextField()
-    date_created = models.DateTimeField(auto_now_add=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     rating = models.CharField(max_length=100, choices=RATING_CHOICES, default='★☆☆☆☆')
+#     comment = models.TextField()
+#     date_created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Review #{self.pk} for {self.product.name} by {self.user.username}"
+#     def __str__(self):
+#         return f"Review #{self.pk} for {self.product.name} by {self.user.username}"
 
 
 
