@@ -15,7 +15,8 @@ import Checkout from "./pages/checkout/Checkout";
 import TopFooter from "./components/footer/TopFooter";
 import SuccessCheckout from "./pages/checkout/SuccessCheckout";
 import { ToastContainer } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
+import AllProductList from "./pages/allProductList";
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/checkout-success" element={<SuccessCheckout />} />
         <Route path="/product-detail/:slug" element={<ProductDetail />} />
+        <Route path="/products-list" element={<AllProductList />} />
         <Route path="/products-list/:slug" element={<ProductsList />} />
+
       </Routes>
       <TopFooter />
       <Footer />

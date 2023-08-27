@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { getProducts } from "../../redux/apiCalls/productApiCall";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // Import the useTranslation hook
 
 function Section() {
+  const { t } = useTranslation(); // Initialize the useTranslation hook
   const { slug } = useParams();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products.slice(0, 2)); // Get the first 2 products
@@ -19,18 +21,17 @@ function Section() {
               <div className="max-w-md mx-auto text-center lg:text-left">
                 <header>
                   <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                  Necklaces
+                    {t("section.necklaces")} 
                   </h2>
                   <p className="mt-4 text-gray-500">
-                  Discover our exquisite collection of necklaces that effortlessly combine elegance and style.
-                   Elevate your look with our handcrafted necklaces designed to make a statement.
+                    {t("section.discoverCollection")} 
                   </p>
                 </header>
                 <a
                   href="#"
                   className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white transition bg-gray-900 border border-gray-900 rounded hover:shadow focus:outline-none focus:ring"
                 >
-                  Shop All
+                  {t("section.shopAll")} 
                 </a>
               </div>
             </div>

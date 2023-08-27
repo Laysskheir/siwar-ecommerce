@@ -1,0 +1,123 @@
+{
+  "home.collection": "Collection",
+  "home.featuredProduct": "Featured Products",
+
+  "header.searchBarPlaceholder": "Search...",
+  "header.homeLink": "Home",
+  "header.collectionLink": "Collection",
+  "header.aboutUsLink": "About Us",
+  "header.contactUsLink": "Contact Us",
+
+  "topHeader.message": "Cash on Delivery - Free Delivery Charge",
+
+  "footer": {
+    "copyrightText": "© 2023, Siwar Bracelet",
+    "poweredBy": "Powered by LayssKheir"
+  },
+  
+  "topFooter.infoTitle": "Info",
+  "topFooter.shippingPolicy": "Shipping Policy",
+  "topFooter.refundPolicy": "Refund Policy",
+  "topFooter.termsCondition": "Terms & Condition",
+  "topFooter.aboutTitle": "About",
+  "topFooter.aboutContent": "Where we offer a unique collection of high-quality bracelets that are perfect for any occasion. Our goal is to provide our customers with an exceptional shopping experience and a range of stylish bracelets that they can enjoy for years to come.",
+
+  "hero": {
+    "title": "Welcome to Siwar",
+    "description": "We offer a unique collection of high-quality bracelets that are perfect for any occasion. Our goal is to provide our customers with an exceptional shopping experience and a range of stylish bracelets that they can enjoy for years to come. Thank you for visiting our website, and we hope you enjoy browsing our collection!"
+  },
+
+  "section": {
+    "necklaces": "Necklaces",
+    "discoverCollection": "Discover our exquisite collection of necklaces that effortlessly combine elegance and style. Elevate your look with our handcrafted necklaces designed to make a statement.",
+    "shopAll": "Shop All"
+  },
+
+  "aboutUs": {
+    "aboutUsHeader": "About Us",
+    "aboutUsContent": "Welcome to Siwar where we offer a unique collection of high-quality bracelets that are perfect for any occasion. Our goal is to provide our customers with an exceptional shopping experience and a range of stylish bracelets that they can enjoy for years to come. At Siwar, we believe that quality should always come first. That's why we carefully source our materials to ensure that our bracelets are made from only the finest materials. We also understand that everyone has different tastes when it comes to fashion, which is why we offer a wide range of styles and designs to choose from Thank you for visiting our website, and we hope you enjoy browsing our collection!"
+  },
+
+  "contactUs": {
+    "contactUsHeader": "Contact Us",
+    "contactUsContent": "Our dedicated customer service team is committed to providing you with the highest level of support possible. Whether you need help with placing an order, have a question about a product, or need assistance with a resize exchange. Contact us and we'll be happy to help!",
+    "phone": "Phone number: +961 76 880 217",
+    "email": "Email: Siwar.lebanon@gmail.com",
+    "instagram": "Instagram: siwar.bracelet",
+    "facebook": "Facebook: Siwar Bracelet",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "phoneNumberPlaceholder": "Phone number",
+    "messagePlaceholder": "Write your message...",
+    "submitButton": "Send"
+  },
+
+  "productsList": {
+    "sortBy": "Sort By",
+    "availability": "Availability",
+    "price": "Price",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "reset": "Reset",
+    "noProducts": "No products.",
+    "tryAgain": "Try searching again, or return home to start from the beginning.",
+    "goBackHome": "Go Back Home",
+    "showingProducts": "Showing Products"
+  },
+
+  "cart": {
+    "title": "Your cart",
+    "continueShopping": "Continue shopping",
+    "product": "PRODUCT",
+    "quantity": "QUANTITY",
+    "total": "TOTAL",
+    "emptyCart": "Your cart is empty",
+    "checkout": "Checkout",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "totalAmount": "Total Amount",
+    "continueShoppingButton": "Continue shopping"
+  },
+
+  "summary": {
+    "subtotal": "Subtotal",
+    "taxesShipping": "Taxes and shipping calculated at checkout",
+    "checkoutButton": "Check out"
+  },
+
+  "checkout": {
+    "cartLink": "Cart",
+    "shippingLink": "Shipping",
+    "shippingAddress": "shipping Address",
+    "usePermanentAddress": "Use a permanent address where you can receive mail.",
+    "contact": "Contact",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "country": "Country",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "postalCode": "ZIP / Postal code",
+    "subtotal": "Subtotal",
+    "shippingCalc": "Taxes and shipping calculated at checkout",
+    "placeOrder": "Place Order",
+    "total": "Total"
+  },
+
+  "sidebar": {
+    "itemAdded": "Item added to your cart",
+    "viewCart": "View my cart",
+    "checkOut": "Check out",
+    "continueShopping": "Continue shopping"
+  },
+
+  "relatedProducts": {
+    "title": "RELATED PRODUCTS"
+  },
+
+  "addToCart": "Add to cart",
+  "buyNow": "Buy it now",
+  "chatWithUs": "Chat with us"
+  
+}

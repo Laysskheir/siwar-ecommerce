@@ -4,7 +4,7 @@ import { productActions } from "../slices/productSlice";
 export function getProducts() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/`);
+      const response = await axios.get(`/`);
       const data = response.data;
       dispatch(productActions.setProducts(data.products));
     } catch (error) {
@@ -16,7 +16,7 @@ export function getProducts() {
 export function getProductDetail(slug) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/product-detail/${slug}`);
+      const response = await axios.get(`/product-detail/${slug}`);
       const data = response.data;
       console.log("Product Detail Data:", data); // Add this line to check the received data
       dispatch(productActions.setLoading());

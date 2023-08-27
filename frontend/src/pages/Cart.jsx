@@ -3,20 +3,22 @@ import CartItem from "../components/cart/CartItem";
 import Summary from "../components/cart/Summary";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Cart() {
+  const { t } = useTranslation();
   const cartItems = useSelector((state) => state.product.cartItems);
 
   return (
     <div className="w-full md:py-20 flex flex-col items-center sm:mt-8">
       {/* Title and Continue Shopping */}
       <div className="text-black font-light md:max-w-6xl text-3xl w-full flex items-center justify-between p-8 mt-8 sm:mt-8">
-        <p className="mr-4 text-4xl">Your cart</p>
+        <p className="mr-4 text-4xl">{t("cart.title")}</p>
         <Link
-          to={`/`}
+          to={`/products-list`}
           className="text-sm underline cursor-pointer hover:underline-offset-2"
         >
-          Continue shopping
+          {t("cart.continueShopping")}
         </Link>
       </div>
 
@@ -25,10 +27,16 @@ function Cart() {
         {cartItems.length > 0 ? (
           <table className="w-full border-collapse">
             <thead>
-              <tr className="border-b  text-gray-400">
-                <th className="py-3 px-4 text-left font-semibold">PRODUCT</th>
-                <th className="py-3 px-4 text-left font-semibold">QUANTITY</th>
-                <th className="py-3 px-4 text-left font-semibold">TOTAL</th>
+              <tr className="border-b text-gray-400">
+                <th className="py-3 px-4 text-left font-semibold">
+                  {t("cart.product")}
+                </th>
+                <th className="py-3 px-4 text-left font-semibold">
+                  {t("cart.quantity")}
+                </th>
+                <th className="py-3 px-4 text-left font-semibold">
+                  {t("cart.total")}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -47,9 +55,12 @@ function Cart() {
           </table>
         ) : (
           <div className="text-center">
-            <h1 className="m-4 p-3 text-4xl">Your cart is empty</h1>
-            <Link to="/" className="bg-blue  text-light m-4 py-3 px-8">
-              Continue shopping
+            <h1 className="m-4 p-3 text-4xl">{t("cart.emptyCart")}</h1>
+            <Link
+              to="/"
+              className="bg-blue text-light m-4 py-3 px-8"
+            >
+              {t("cart.continueShoppingButton")}
             </Link>
           </div>
         )}

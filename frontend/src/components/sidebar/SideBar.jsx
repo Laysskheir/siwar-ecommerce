@@ -2,8 +2,10 @@ import React from "react";
 import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SideBar({ onClose }) {
+  const { t } = useTranslation();
   const cartItems = useSelector((state) => state.product.cartItems);
 
   return (
@@ -11,7 +13,7 @@ function SideBar({ onClose }) {
       <div className="flex flex-row items-center gap-16 m-4">
         <p className="flex-row flex items-center text-sm gap-2">
           <AiOutlineCheck />
-          Item added to your cart
+          {t("sidebar.itemAdded")}
         </p>
         <AiOutlineClose
           className="text-xl cursor-pointer transform hover:scale-105"
@@ -39,15 +41,17 @@ function SideBar({ onClose }) {
           to={`/cart`}
           className="bg-blue border-2 py-2 px-3 flex items-center justify-center"
         >
-          View my cart ({cartItems.length})
+          {t("sidebar.viewCart")} ({cartItems.length})
         </Link>
         <Link
           to={`/checkout`}
           className="bg-white py-2 px-3 text-blue flex items-center justify-center"
         >
-          Check out
+          {t("sidebar.checkOut")}
         </Link>
-        <button className="underline text-sm">Continue shopping</button>
+          <Link to={`/products-list`} className="underline text-sm text-center">
+            {t("sidebar.continueShopping")}
+          </Link>
       </div>
     </div>
   );

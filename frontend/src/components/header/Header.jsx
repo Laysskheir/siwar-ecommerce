@@ -2,6 +2,7 @@ import logo from "../../images/logo/logo.png";
 import { FiChevronDown } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { IoBagHandleOutline } from "react-icons/io5";
+import { BsTranslate } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SearchBar from "../sidebar/SearchBar";
@@ -10,9 +11,10 @@ import { getSliders } from '../../redux/apiCalls/slidersApiCall'
 import SearchMenu from "../sidebar/SearchMenu";
 import { HiOutlineMenu } from "react-icons/hi";
 import OutlineMenu from "../sidebar/OutlineMenu";
+import { useTranslation } from 'react-i18next';
 
 function Header() {
-  
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch(); 
   const cartItems = useSelector((state) => state.product.cartItems);
 
@@ -52,6 +54,16 @@ function Header() {
     dispatch(getSliders())
 },[dispatch])
 
+
+const toggleLanguage = () => {
+    const newLanguage =  i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLanguage);
+
+    localStorage.setItem("selectedLanguage", newLanguage)
+
+    document.documentElement.setAttribute("dir", i18n.language === "ar" ? "rtl" : "ltl");
+};
+
   return (
     <div className="relative">
       <div>
@@ -79,12 +91,12 @@ function Header() {
             {/* category */}
             <div className="relative flex-1 hidden md:inline-flex items-center justify-center gap-4 ">
               <Link to="/" className="">
-                <p className=" hover:underline flex items-center">Home </p>
+                <p className=" hover:underline flex items-center">{t('header.homeLink')} </p>
               </Link>
 
               <Link className="relative group">
                 <p className="hover:underline flex items-center" onClick={toggleMenu}>
-                  Collection{" "}
+                {t('header.collectionLink')}
                   <span className={`transition ${isMenuOpen ? 'rotate-180' : 'rotate-0'} transform origin-center`}>
                     <FiChevronDown className="pt-1" />
                   </span>
@@ -108,13 +120,13 @@ function Header() {
                 to="/about-us"
                 className=" hover:underline flex items-center"
               >
-                About Us{" "}
+                {t('header.aboutUsLink')}
               </Link>
               <Link
                 to="/contact-us"
                 className=" hover:underline flex items-center"
               >
-                Contact Us{" "}
+                {t('header.contactUsLink')}
               </Link>
             </div>
             {/* Search */}
@@ -122,6 +134,13 @@ function Header() {
              onClick={toggleSearchBar}>
               <GoSearch className="transition-transform transform hover:scale-110 text-2xl" />
             </div>
+
+            {/* Translate */}
+            <div className="flex items-center px-2 text-2xl  cursor-pointer relative" onClick={toggleLanguage}>
+              <BsTranslate />
+            </div>
+            
+            
             {/* Cart */}
             <Link
               to="/cart"

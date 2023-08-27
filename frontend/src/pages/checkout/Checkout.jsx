@@ -11,8 +11,10 @@ import { productActions } from "../../redux/slices/productSlice";
 import { updateOrder } from "../../redux/apiCalls/orderApiCall";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 
 function Checkout() {
+  const { t } = useTranslation();
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.product.cartItems);
@@ -87,13 +89,13 @@ function Checkout() {
      <div id="formInfo" className="m-8 flex-1">
         <h2 className="text-3xl font-semibold">Siwar Bracelet</h2>
         <div className="flex flex-row items-center gap-2 mb-8 text-sm">
-          <Link to={`/cart`} className="text-red-400">Cart</Link>
+          <Link to={`/cart`} className="text-red-400">{t("checkout.cartLink")}</Link>
           <BiChevronRight />
-          <p className="font-bold">Shipping</p>
+          <p className="font-bold">{t("checkout.shippingLink")}</p>
         </div>
 
         <div className="mt-4 mb-8">
-          <h2 className="text-2xl font-bold ">Contact</h2>
+          <h2 className="text-2xl font-bold ">{t("checkout.contact")}</h2>
           <div className="sm:col-span-4">
             <div className="mt-2">
               <input
@@ -110,9 +112,9 @@ function Checkout() {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12 mt-4">
-          <h1 className=" font-bold leading-7 text-xl">Shipping address</h1>
+          <h1 className=" font-bold leading-7 text-xl">{t("checkout.shippingAddress")}</h1>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Use a permanent address where you can receive mail.
+          {t("checkout.usePermanentAddress")}
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
@@ -219,7 +221,7 @@ function Checkout() {
             <div className="flex justify-between gap-4 mt-4">
               
               <button type="submit" onClick={handleSubmit} className='px-8  hover:bg-sky-700  bg-steel text-white py-4   rounded-lg font-semibold   transition-transform transform hover:scale-105'>
-                  Place Order 
+              {t("checkout.placeOrder")}
               </button>
             </div>
           </div>
@@ -248,17 +250,17 @@ function Checkout() {
         </div>
       ))}
         <div className="flex items-center justify-between px-8">
-            <p>Subtotal</p>
+            <p>{t("checkout.subtotal")}</p>
             <span className="text-xl">{total} $</span>
         </div>
 
         <div className="flex items-center justify-between px-8">
-            <p>Shipping</p>
-            <span className="text-gray-500 text-sm">Calculated at next step</span>
+            <p>{t("checkout.shippingLink")}</p>
+            <span className="text-gray-500 text-sm">{t("checkout.shippingCalc")}</span>
         </div>
 
         <div className="flex items-center justify-between px-8 text-xl mt-4 font-semibold">
-            <p className="">Total</p>
+            <p className="">{t("checkout.total")}</p>
             <span className="text-xl">{total} $</span>
         </div>
       </div>

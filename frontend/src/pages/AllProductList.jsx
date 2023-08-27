@@ -3,55 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getProducts } from '../redux/apiCalls/productApiCall';
 import { Link, useParams } from 'react-router-dom';
-import { createSelector } from 'reselect';
 import { useTranslation } from 'react-i18next';
 
-function ProductsList() {
+function AllProductList() {
   const { slug } = useParams()
   const dispatch = useDispatch();
   const { t } = useTranslation();
   
   // Selector for all products in the store
-  const allProductsSelector = state => state.product.products;
+  const products = useSelector((state) => state.product.products);
 
-  // Memoized selector for filtered products based on the category slug
-  const filteredProductsSelector = createSelector(
-    allProductsSelector,
-    products => products.filter(product => product.category.slug === slug)
-  );
-
-  // Fetch filtered products using the memoized selector
-  const products = useSelector(filteredProductsSelector);
-
-
-  const [currentPage, setCurrentPage] = useState(1); 
-
-  // Set the number of products per page
-  const productsPerPage = 8; // Adjust as needed
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
-
-  
   useEffect(() => {
       window.scrollTo(0, 0);
       dispatch(getProducts())
   },[dispatch]);
 
-  const goToPage = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-    }
-  };
-
-  const goToPreviousPage = () => {
-    goToPage(currentPage - 1);
-  };
-
-  const goToNextPage = () => {
-    goToPage(currentPage + 1);
-  };
-
+ 
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -61,7 +28,7 @@ function ProductsList() {
           </h2>
           <div className="mt-8">
             <p className="text-sm text-gray-500">
-              {t('productsList.showingProducts', { productsPerPage, totalProductsCount: products.length })}
+              {t('productsList.showingProducts' )}  
             </p>
           </div>
 
@@ -276,7 +243,7 @@ function ProductsList() {
 
           ) : (
             <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage).map((product) => (
+            {products.map((product) => (
               <li key={product.id}>
                 <Link to={`/product-detail/${product.slug}`} className="group block overflow-hidden">
                   <img
@@ -305,68 +272,10 @@ function ProductsList() {
           )}
         
 
-       {/* Pagination */}
-        <ol className="mt-8 flex justify-center gap-1 text-xs font-medium">
-        <li>
-          <a
-            className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
-            onClick={goToPreviousPage}
-          >
-            <span className="sr-only">Prev Page</span>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-3 w-3  cursor-pointer"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-            </svg>
-          </a>
-        </li>
-
-        {/* Generate page number links */}
-        {Array.from({ length: totalPages }, (_, index) => (
-          <li key={index}>
-            <a
-              className={`block cursor-pointer h-8 w-8 rounded ${
-                index + 1 === currentPage ? 'border-black bg-black text-white' : 'border-gray-100'
-              } text-center leading-8`}
-              onClick={() => goToPage(index + 1)}
-            >
-              {index + 1}
-            </a>
-          </li>
-        ))}
-
-        <li>
-          <a
-            className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
-            onClick={goToNextPage}
-          >
-            <span className="sr-only ">Next Page</span>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-3 w-3  cursor-pointer"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clipRule="evenodd"
-            />
-            </svg>
-          </a>
-        </li>
-      </ol>
-
+      
       </div>
     </section>
   )
 }
 
-export default ProductsList
+export default AllProductList

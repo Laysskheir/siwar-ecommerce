@@ -8,7 +8,7 @@ export function updateOrder(orderData) {
       const jsonData = JSON.stringify(orderData);
 
       // Make a POST request to update the order
-      const response = await axios.post("http://127.0.0.1:8000/order/", jsonData, {
+      const response = await axios.post("/order/", jsonData, {
         headers: {
           "Content-Type": "application/json", 
         },
